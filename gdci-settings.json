@@ -1,0 +1,58 @@
+{
+    "buildTemplates": [
+        {
+            "name": "default",
+            "targets": [
+                {"targetTag": "x86_64-linux-gnu"},
+                {"targetTag": "arm-linux-gnueabi"},
+                {"targetTag": "aarch64-linux-gnu"}
+            ]
+        },
+        {
+            "name": "bootstrap",
+            "args": {
+                "fixed": ["--enable-bootstrap"]
+            },
+            "targets": [
+                {"targetTag": "x86_64-linux-gnu"},
+                {"targetTag": "arm-linux-gnueabi"},
+                {"targetTag": "aarch64-linux-gnu"}
+            ]
+        }
+    ],
+    "branches": [
+        {
+            "name": "master",
+            "autoTrigger": false,
+            "supercedeRunning": true,
+            "supercedeQueued": true,
+            "defaultTemplate": "default"
+        },
+        {
+            "name": "ibuclaw/gdc",
+            "autoTrigger": true,
+            "supercedeRunning": true,
+            "supercedeQueued": true,
+            "defaultTemplate": "default"
+        }
+    ],
+    "pr": {
+        "autoTrigger": true,
+        "supercedeRunning": true,
+        "supercedeQueued": true,
+        "defaultTemplate": "default"
+    },
+    "schedule": [
+        {
+            "branch": "master",
+            "timeSpec": "weekly",
+            "buildTemplate": "bootstrap"
+        }
+    ],
+    "semaphoreV1": {
+
+    },
+    "buildkite": {
+
+    }
+}
